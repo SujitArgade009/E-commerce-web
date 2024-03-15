@@ -16,13 +16,13 @@ const sortOptions = [
   { name: 'Price: Low to High', href: '#', current: false },
   { name: 'Price: High to Low', href: '#', current: false },
 ];
-const subCategories = [
-  { name: 'Totes', href: '#' },
-  { name: 'Backpacks', href: '#' },
-  { name: 'Travel Bags', href: '#' },
-  { name: 'Hip Bags', href: '#' },
-  { name: 'Laptop Sleeves', href: '#' },
-];
+// const subCategories = [
+//   { name: 'Totes', href: '#' },
+//   { name: 'Backpacks', href: '#' },
+//   { name: 'Travel Bags', href: '#' },
+//   { name: 'Hip Bags', href: '#' },
+//   { name: 'Laptop Sleeves', href: '#' },
+// ];
 const filters = [
   {
     id: 'color',
@@ -147,7 +147,7 @@ export default function ProductList() {
 
                     {/* Filters */}
                     <form className="mt-4 border-t border-gray-200">
-                      <h3 className="sr-only">Categories</h3>
+                      {/* <h3 className="sr-only">Categories</h3>
                       <ul
                         role="list"
                         className="px-2 py-3 font-medium text-gray-900"
@@ -159,7 +159,7 @@ export default function ProductList() {
                             </a>
                           </li>
                         ))}
-                      </ul>
+                      </ul> */}
 
                       {filters.map((section) => (
                         <Disclosure
@@ -303,8 +303,8 @@ export default function ProductList() {
               <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
                 {/* Filters */}
                 <form className="hidden lg:block">
-                  <h3 className="sr-only">Categories</h3>
-                  <ul
+                  {/* <h3 className="sr-only">Categories</h3> */}
+                  {/* <ul
                     role="list"
                     className="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900"
                   >
@@ -313,7 +313,7 @@ export default function ProductList() {
                         <a href={category.href}>{category.name}</a>
                       </li>
                     ))}
-                  </ul>
+                  </ul> */}
 
                   {filters.map((section) => (
                     <Disclosure
