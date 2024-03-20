@@ -426,7 +426,7 @@ export default function ProductList() {
                       {/* <h2 className="text-2xl font-bold tracking-tight text-gray-900">
                         Products
                       </h2> */}
-                      <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+                      <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
                         {products.map((product) => (
                           <div key={product.id} className="group relative">
                             <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
@@ -464,8 +464,9 @@ export default function ProductList() {
                 {/* End Of the Product grid */}
               </div>
             </section>
+
+
             {/* Section of the product and filters ends */}
-            
             <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
               <div className="flex flex-1 justify-between sm:hidden">
                 <a

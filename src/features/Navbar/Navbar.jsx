@@ -29,9 +29,12 @@ const userNavigation = [
   { name: 'Sign out', href: '#' },
 ];
 
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ');
+}
 export default function Navbar({ children }) {
   return (
-    <div>
+    <>
       <div className="min-h-full">
         <Disclosure as="nav" className="bg-gray-800">
           {({ open }) => (
@@ -52,12 +55,12 @@ export default function Navbar({ children }) {
                           <a
                             key={item.name}
                             href={item.href}
-                            className={
-                              (item.current
+                            className={classNames(
+                              item.current
                                 ? 'bg-gray-900 text-white'
                                 : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                              'rounded-md px-3 py-2 text-sm font-medium')
-                            }
+                              'rounded-md px-3 py-2 text-sm font-medium'
+                            )}
                             aria-current={item.current ? 'page' : undefined}
                           >
                             {item.name}
@@ -79,7 +82,7 @@ export default function Navbar({ children }) {
                           aria-hidden="true"
                         />
                       </button>
-                      <span className="inline-flex items-center rounded-md mb-8 -ml-2 bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
+                      <span className="inline-flex items-center rounded-md mb-11 -ml-1 bg-red-50 px-2 py-0 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
                         3
                       </span>
                       {/* Profile dropdown */}
@@ -110,10 +113,10 @@ export default function Navbar({ children }) {
                                 {({ active }) => (
                                   <a
                                     href={item.href}
-                                    className={
-                                      (active ? 'bg-gray-100' : '',
-                                      'block px-4 py-2 text-sm text-gray-700')
-                                    }
+                                    className={classNames(
+                                      active ? 'bg-gray-100' : '',
+                                      'block px-4 py-2 text-sm text-gray-700'
+                                    )}
                                   >
                                     {item.name}
                                   </a>
@@ -153,12 +156,12 @@ export default function Navbar({ children }) {
                       key={item.name}
                       as="a"
                       href={item.href}
-                      className={
-                        (item.current
+                      className={classNames(
+                        item.current
                           ? 'bg-gray-900 text-white'
                           : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                        'block rounded-md px-3 py-2 text-base font-medium')
-                      }
+                        'block rounded-md px-3 py-2 text-base font-medium'
+                      )}
                       aria-current={item.current ? 'page' : undefined}
                     >
                       {item.name}
@@ -187,15 +190,15 @@ export default function Navbar({ children }) {
                       className="relative ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                     >
                       <span className="absolute -inset-1.5" />
-                      {/* <span className="sr-only">View notifications</span> */}
+                      <span className="sr-only">View notifications</span>
                       <ShoppingCartIcon
                         className="h-6 w-6"
                         aria-hidden="true"
                       />
+                      <span className="inline-flex items-center rounded-md mb-8 -ml-2 bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
+                        3
+                      </span>
                     </button>
-                    <span className="inline-flex items-center rounded-md mb-7 -ml-2 bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
-                      3
-                    </span>
                   </div>
                   <div className="mt-3 space-y-1 px-2">
                     {userNavigation.map((item) => (
@@ -218,7 +221,7 @@ export default function Navbar({ children }) {
         <header className="bg-white shadow">
           <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
             <h1 className="text-3xl font-bold tracking-tight text-gray-900">
-              E-commerce 
+              Dashboard
             </h1>
           </div>
         </header>
@@ -228,7 +231,7 @@ export default function Navbar({ children }) {
           </div>
         </main>
       </div>
-    </div>
+    </>
   );
 }
 
