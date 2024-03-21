@@ -7,6 +7,7 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline';
 import { Link } from 'react-router-dom';
+// import '../../assets/style.css';
 // import {imageUrl} from "../../assets/Sujit.jpeg";
 
 // const imageUrl = import('../../assets/Sujit.jpeg').default;
@@ -85,7 +86,7 @@ export default function Navbar({ children }) {
                           />
                         </button>
                       </Link>
-                      <span className="inline-flex items-center rounded-md mb-11 -ml-1 bg-red-50 px-2 py-0 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
+                      <span className="inline-flex z-10 items-center rounded mb-6 -ml-3 bg-red-50 px-2 py-0 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
                         3
                       </span>
                       {/* Profile dropdown */}
@@ -199,7 +200,7 @@ export default function Navbar({ children }) {
                           className="h-6 w-6"
                           aria-hidden="true"
                         />
-                        <span className="inline-flex items-center rounded-md mb-8 -ml-2 bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
+                        <span className="inline-flex items-center rounded-md mb-5 -ml-2 bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
                           3
                         </span>
                       </button>
