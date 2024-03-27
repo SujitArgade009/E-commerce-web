@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { StarIcon } from '@heroicons/react/20/solid'
 import { RadioGroup } from '@headlessui/react'
+import {addNewItem} from "./ProductListSlice";
+import { useDispatch, useSelector } from 'react-redux';
 
 const product = {
   name: 'Basic Tee 6-Pack',
@@ -61,9 +63,13 @@ function classNames(...classes) {
 }
 
 export default function ProductDetails() {
-  const [selectedColor, setSelectedColor] = useState(product.colors[0])
-  const [selectedSize, setSelectedSize] = useState(product.sizes[2])
+  const [selectedColor, setSelectedColor] = useState(product.colors[0]);
+  const [selectedSize, setSelectedSize] = useState(product.sizes[2]);
+  const item = useSelector((state) => state);
+  console.log(item);
+  const dispatch = useDispatch();
 
+  
   return (
     <div className="bg-white">
       <div className="pt-6">
@@ -266,6 +272,7 @@ export default function ProductDetails() {
               <button
                 type="submit"
                 className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                onClick={() =>dispatch(addNewItem({Name:product.title, Price: product.price}))}
               >
                 Add to Cart
               </button>

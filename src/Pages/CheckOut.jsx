@@ -237,7 +237,7 @@ export default function CheckOut() {
                 </div>
                 <div className="border-b border-gray-900/10 pb-12">
                   <h2 className="text-xl font-semibold leading-7 text-gray-900">
-                    Existing Addresses 
+                    Existing Addresses
                   </h2>
                   <p className="mt-1 text-sm leading-6 text-gray-600">
                     Choose From Existing Addresses
