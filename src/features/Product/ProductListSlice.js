@@ -1,17 +1,43 @@
-import { createSlice } from '@reduxjs/toolkit';
-// import { fetchProductsData } from './ProductListAPI';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { fetchProductsData } from './ProductListAPI';
 
-const productSlice = createSlice({
-  name: 'Products',
-  initialState: {
-    products: []
-  },
-  reducers: {
-    addNewItem: (state, action) => {
-      state.push(action.payload);
+const initialState = {
+  value: 0,
+  status: 'idle',
+};
+
+export const fetchAllproductAsync = createAsyncThunk(
+  'counter/fetchProductsData',
+  async () => {
+    const response= await fetchProductsData();
+    return response.data;
+  }
+);
+
+export const productSlice=createSlice({
+    name:"Products",
+    initialState:[],
+    reducers:{
+      fetchProductsData:(state, action)=>{
+        
+      }
     }
-  },
-});
+})
 
-export const {addNewItem} =productSlice.actions;
-export default productSlice.reducer;
+// import { createSlice } from '@reduxjs/toolkit';
+// // import { fetchProductsData } from './ProductListAPI';
+
+// const productSlice = createSlice({
+//   name: 'Products',
+//   initialState: {
+//     products: []
+//   },
+//   reducers: {
+//     addNewItem: (state, action) => {
+//       state.push(action.payload);
+//     }
+//   },
+// });
+
+// export const {addNewItem} =productSlice.actions;
+// export default productSlice.reducer;

@@ -1,5 +1,5 @@
- 
-const products = [
+{
+  "products": [
     {
       "id": 1,
       "title": "iPhone 9",
@@ -550,5 +550,15 @@ const products = [
         "https://cdn.dummyjson.com/product-images/30/thumbnail.jpg"
       ]
     }
-  ];
+  ],
+  "total": 100,
+  "skip": 0,
+  "limit": 30
+}
+
+
+
+
+
+
 

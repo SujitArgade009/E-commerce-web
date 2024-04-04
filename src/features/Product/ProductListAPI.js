@@ -1,10 +1,11 @@
 const fetchProductsData = async () => {
   try {
-    const response = await fetch('http://localhost:3000/products');
-    if (!response.ok) {
+    const res = await fetch('http://localhost:8000/products');
+    if (!res.ok) {
       throw new Error('Failed to fetch data');
     }
-    return await response.json();
+    const data= await res.json();
+    return ({data});
   } catch (error) {
     console.error('Error fetching data:', error);
     throw error;
