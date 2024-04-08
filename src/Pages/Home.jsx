@@ -1,16 +1,12 @@
 import Navbar from '../features/Navbar/Navbar';
-import ProductList from '../features/Product/ProductList';
-import { Provider } from 'react-redux';
-import store from '../app/store';
+import ProductList from '../features/Product/ProductList.jsx';
 
 export default function Home() {
   return (
     <div>
-      <Provider store={store}>
-        <Navbar>
-          <ProductList></ProductList>
-        </Navbar>
-      </Provider>
+      <Navbar>
+        <ProductList></ProductList>
+      </Navbar>
     </div>
   );
 }

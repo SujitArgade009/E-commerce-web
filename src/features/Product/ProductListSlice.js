@@ -1,43 +1,34 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { fetchProductsData } from './ProductListAPI';
 
 const initialState = {
-  value: 0,
-  status: 'idle',
+  // products: [],
+  isLoading: false,
+  isError: false,
+  products: [],
 };
 
-export const fetchAllproductAsync = createAsyncThunk(
-  'counter/fetchProductsData',
-  async () => {
-    const response= await fetchProductsData();
-    return response.data;
-  }
-);
+// Action for the fetching the data through the middleware CreateAsyncThunk from API
+export const allProductAsync = createAsyncThunk('product', async () => {
+  const response = await fetch('http://localhost:8000/products');
+  return response.json();
+});
 
-export const productSlice=createSlice({
-    name:"Products",
-    initialState:[],
-    reducers:{
-      fetchProductsData:(state, action)=>{
-        
-      }
-    }
-})
+export const productSlice = createSlice({
+  name: 'product',
+  initialState,
+  extraReducers: (builder) => {
+    builder.addCase(allProductAsync.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(allProductAsync.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.products = action.payload;
+    });
+    builder.addCase(allProductAsync.rejected, (state, action) => {
+      console.log('Error', action.payload);
+      state.isError = true;
+    });
+  },
+});
 
-// import { createSlice } from '@reduxjs/toolkit';
-// // import { fetchProductsData } from './ProductListAPI';
-
-// const productSlice = createSlice({
-//   name: 'Products',
-//   initialState: {
-//     products: []
-//   },
-//   reducers: {
-//     addNewItem: (state, action) => {
-//       state.push(action.payload);
-//     }
-//   },
-// });
-
-// export const {addNewItem} =productSlice.actions;
-// export default productSlice.reducer;
+export default productSlice.reducer;
