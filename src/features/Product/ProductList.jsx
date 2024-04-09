@@ -11,14 +11,15 @@ import {
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { allProductAsync } from '../Product/ProductListSlice';
+import {
+  allProductAsync,
+  fetchProductByFilter,
+} from '../Product/ProductListSlice';
 
 const sortOptions = [
-  { name: 'Most Popular', href: '#', current: true },
-  { name: 'Best Rating', href: '#', current: false },
-  { name: 'Newest', href: '#', current: false },
-  { name: 'Price: Low to High', href: '#', current: false },
-  { name: 'Price: High to Low', href: '#', current: false },
+  { name: 'Best Rating', sort: 'rating', order: 'desc', current: false },
+  { name: 'Price: Low to High', sort: 'price', order: 'asc', current: false },
+  { name: 'Price: High to Low', sort: 'price', order: 'desc', current: false },
 ];
 // const subCategories = [
 //   { name: 'Totes', href: '#' },
@@ -180,7 +181,22 @@ export default function ProductList() {
   const dispatch = useDispatch(allProductAsync);
   const products = useSelector((state) => state.product.products);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
-  console.log('State', products);
+  const [filter, setfilter] = useState({});
+  // console.log('State', products);
+
+  const handleFilter = (e, section, option) => {
+    const newfilter = { ...filter, [section.id]: option.value };
+    setfilter(newfilter);
+    dispatch(fetchProductByFilter(newfilter));
+    console.log(section.id, option.value);
+  };
+
+  const handleSort = (e, option) => {
+    const newfilter = { ...filter, _sort: option.sort , _order: option.order};
+    setfilter(newfilter);
+    dispatch(fetchProductByFilter(newfilter));
+   
+  };
 
   useEffect(() => {
     dispatch(allProductAsync());
@@ -236,20 +252,6 @@ export default function ProductList() {
 
                     {/* Filters */}
                     <form className="mt-4 border-t border-gray-200">
-                      {/* <h3 className="sr-only">Categories</h3>
-                      <ul
-                        role="list"
-                        className="px-2 py-3 font-medium text-gray-900"
-                      >
-                        {subCategories.map((category) => (
-                          <li key={category.name}>
-                            <a href={category.href} className="block px-2 py-3">
-                              {category.name}
-                            </a>
-                          </li>
-                        ))}
-                      </ul> */}
-
                       {filters.map((section) => (
                         <Disclosure
                           as="div"
@@ -346,8 +348,8 @@ export default function ProductList() {
                         {sortOptions.map((option) => (
                           <Menu.Item key={option.name}>
                             {({ active }) => (
-                              <a
-                                href={option.href}
+                              <p
+                                onClick={(e) => handleSort(e, option)}
                                 className={
                                   (option.current
                                     ? 'font-medium text-gray-900'
@@ -357,7 +359,7 @@ export default function ProductList() {
                                 }
                               >
                                 {option.name}
-                              </a>
+                              </p>
                             )}
                           </Menu.Item>
                         ))}
@@ -392,18 +394,6 @@ export default function ProductList() {
               <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
                 {/* Filters */}
                 <form className="hidden lg:block">
-                  {/* <h3 className="sr-only">Categories</h3> */}
-                  {/* <ul
-                    role="list"
-                    className="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900"
-                  >
-                    {subCategories.map((category) => (
-                      <li key={category.name}>
-                        <a href={category.href}>{category.name}</a>
-                      </li>
-                    ))}
-                  </ul> */}
-
                   {filters.map((section) => (
                     <Disclosure
                       as="div"
@@ -444,6 +434,9 @@ export default function ProductList() {
                                     name={`${section.id}[]`}
                                     defaultValue={option.value}
                                     type="checkbox"
+                                    onChange={(e) =>
+                                      handleFilter(e, section, option)
+                                    }
                                     defaultChecked={option.checked}
                                     className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                   />
